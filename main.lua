@@ -5,6 +5,7 @@ local hue = 0
 local elaspedTime = 0
 local color_cycle_speed = 0.03
 
+
 function make2dArray(rows, cols)
     local arr = {}
     local y, x
@@ -16,6 +17,7 @@ function make2dArray(rows, cols)
     end
     return arr
 end
+
 
 function HSV(h, s, v)
     if s <= 0 then return v,v,v end
@@ -39,18 +41,7 @@ function HSV(h, s, v)
     return r+m, g+m, b+m
 end
 
-function love.mousepressed(x, y, button)
-    if button == 1 then -- "Versions prior to 0.10.0 use the MouseConstant 'l'"
-        xf = math.floor(y/w)
-        yf = math.floor(x/w)
-        if xf > 0 and xf <= cols and yf > 0 and yf <= rows then
-            if (love.math.random() < 0.75) then
-                grid[yf][xf] = hue
-            end
-        end
-    end
- end
-    
+
 function love.load()
     height = love.graphics.getHeight()
     width = love.graphics.getWidth()
@@ -60,6 +51,7 @@ function love.load()
     grid = make2dArray(rows, cols)
     nextGrid = make2dArray(rows, cols)
 end
+
 
 function updateState()
     local nextGrid = make2dArray(rows, cols)
@@ -112,7 +104,6 @@ function love.update(dt)
         end
     end
 end
-
 
 
 function love.draw() 
